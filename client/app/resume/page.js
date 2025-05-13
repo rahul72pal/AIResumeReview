@@ -130,7 +130,7 @@ const Page = () => {
       ) : (
         <form
           onSubmit={handleSubmit}
-          className="w-full max-w-3xl mx-4 mx-auto mt-10 space-y-6 bg-white dark:bg-black border border-dashed border-neutral-300 dark:border-neutral-800 rounded-lg p-4 sm:p-6"
+          className="w-full max-w-3xl sm:mx-4 mx-auto mt-10 space-y-6 bg-white dark:bg-black border border-dashed border-neutral-300 dark:border-neutral-800 rounded-lg p-4 sm:p-6"
         >
           {/* Inputs in one column on small screens, two on medium and up */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
