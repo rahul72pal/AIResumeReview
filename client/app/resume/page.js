@@ -117,7 +117,7 @@ const Page = () => {
         </Highlight>
       </motion.h1>
       {reviewString ? (
-        <div className="flex flex-col text-center justify-center items-center">
+        <div className="flex flex-col justify-center items-center">
           <Review reviewString={reviewString} />
 
           <div onClick={()=>setReviewString(null)} className="p-[2px] mt-10 sm:p-[3px] relative inline-block cursor-pointer">
