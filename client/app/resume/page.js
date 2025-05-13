@@ -79,7 +79,7 @@ const Page = () => {
 
     try {
       setloading(true);
-      const response = await fetch("http://localhost:3000/review-resume", {
+      const response = await fetch("https://airesumereview.onrender.com/review-resume", {
         method: "POST",
         body: formData,
       });
