@@ -19,7 +19,6 @@ const upload = multer({ dest: 'uploads/' });
 
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 async function reviewResumeAndScore({ resumeText, role, experience, skills, industry }) {
   try {
@@ -55,6 +54,8 @@ Keep the tone professional, constructive, and actionable.
 make sure do not give this "html" in response, add css in haeding to show bigger and some emojies in the response`
 
 
+    const apiKey = (process.env.GEMINI_API_KEY || '').replace(/\s+/g, '');
+    const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-lite' });
     const result = await model.generateContent(prompt);
     const response = result.response;
@@ -68,9 +69,10 @@ make sure do not give this "html" in response, add css in haeding to show bigger
 }
 
 // API Route
-app.post('/review-resume', upload.single('resume'), async (req, res) => {
+app.post('/review-resume', upload.any(), async (req, res) => {
   const { role, experience, skills, industry } = req.body;
-  const filePath = req.file?.path;
+  const file = req.files && req.files.length > 0 ? req.files[0] : null;
+  const filePath = file?.path;
 
   if (!filePath) {
     return res.status(400).json({ error: 'Resume file is required' });
