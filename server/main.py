@@ -1,8 +1,11 @@
+import os
+# Force pure-Python protobuf BEFORE any google imports (fixes Python 3.14 C-extension crash)
+os.environ.setdefault("PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", "python")
+
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional
-import os
 import io
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
