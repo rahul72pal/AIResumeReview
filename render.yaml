@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: ai-resume-review-server
+    runtime: python
+    buildCommand: pip install -r server/requirements.txt
+    startCommand: python server/main.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
